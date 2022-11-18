@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenidos a la turnera</h1>
+    <p>Si no tenes un usuario, genera uno en simples pasos!</p>
+    <a class="btn btn-primary" asp-area="" asp-controller="Cliente" asp-action="Create">Crear usuario</a>
+    <p>Si ya lo tenes, solicita tu turno!</p>
+    <a class="btn btn-primary" asp-area="" asp-controller="Turno" asp-action="Create">Pedir turno</a>
+    <p>Si queres ver los turnos solicitados, ver aca!</p>
+    <a class="btn btn-primary" asp-area="" asp-controller="Turno" asp-action="Index">Ver turnos</a>
+</div>
