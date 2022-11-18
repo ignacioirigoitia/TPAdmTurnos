@@ -37,6 +37,13 @@ namespace MVCBasico.Models
         //
         public virtual ICollection<Turno> historialTurnos { get; set; }
 
+        public string NombreApellidoCliente
+        {
+            get
+            {
+                return Nombre + " " + Apellido;
+            }
+        }
 
 
 
@@ -56,13 +63,14 @@ namespace MVCBasico.Models
         public void RestarSaldo(double saldo)
         {
             // aca resto el saldo a mi saldo correspondiente
-            Console.WriteLine(saldo);
+            // Console.WriteLine(saldo);
+            this.Saldo -= saldo;
         }
 
         public bool TengoSaldo()
         {
             // aca verifico si tengo saldo para el turno solicitado
-            return true;
+            return this.Saldo > 100;
         }
     }
 }

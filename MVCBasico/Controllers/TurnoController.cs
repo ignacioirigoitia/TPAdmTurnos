@@ -43,9 +43,24 @@ namespace MVCBasico.Controllers
             return View(turno);
         }
 
+        private void ClientesDropDownList(int? selectedCliente = null)
+        {
+            var cliente = _context.Clientes;
+            ViewBag.IdCliente = new SelectList(cliente.AsNoTracking(), "IdCliente", "NombreApellidoCliente", selectedCliente);
+        }
+        private void TurneraDropDownList(int? selectedTurnera = null)
+        {
+            var turnera = _context.Turneras;
+            ViewBag.IdTurnera = new SelectList(turnera.AsNoTracking(), "IdLibro", "Titulo", selectedTurnera);
+        }
+
+
         // GET: Turno/Create
         public IActionResult Create()
         {
+            ClientesDropDownList();
+            TurneraDropDownList();
+
             return View();
         }
 
@@ -72,15 +87,29 @@ namespace MVCBasico.Controllers
                 else
                 {
                     // aca tengo que buscar al cliente para verificar el saldo
-                    // var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.Id == id);
+                    var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.IdCliente == turno.IdCliente);
 
-                    _context.Add(turno);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    if (cliente.TengoSaldo())
+                    {
+                        cliente.RestarSaldo(100);
+                        _context.Add(turno);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ViewBag.Mensaje = "El cliente no tiene saldo";
+                        return View(turno);
+                    }
+
+                    
                 }
 
 
             }
+            ClientesDropDownList();
+            TurneraDropDownList();
+
             return View(turno);
         }
 
@@ -97,6 +126,8 @@ namespace MVCBasico.Controllers
             {
                 return NotFound();
             }
+            ClientesDropDownList();
+            TurneraDropDownList();
             return View(turno);
         }
 
@@ -132,6 +163,8 @@ namespace MVCBasico.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ClientesDropDownList();
+            TurneraDropDownList();
             return View(turno);
         }
 

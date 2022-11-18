@@ -65,6 +65,20 @@ namespace MVCBasico.Controllers
             return View(cliente);
         }
 
+        // FUNCION PARA VERIFICAR SI TENGO SALDO
+        public async Task<Boolean> TengoSaldo(int? id)
+        {
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.IdCliente == id);
+            if (cliente == null)
+            {
+                return false;
+            }
+            else
+            {
+                return (cliente.Saldo > 0) ? true : false;
+            }
+        }
+
         // GET: Cliente/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,6 +128,27 @@ namespace MVCBasico.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(cliente);
+        }
+
+        // FUNCION PARA ACTUALIZAR SALDO
+        public async void RestarSaldo(int id, double saldo)
+        {
+            var cliente = await _context.Clientes
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
+            if (cliente != null)
+            {
+                cliente.Saldo -= saldo;
+                try
+                {
+                    _context.Update(cliente);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    
+                }
+            }
+
         }
 
         // GET: Cliente/Delete/5
