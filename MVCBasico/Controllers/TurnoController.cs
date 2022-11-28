@@ -22,6 +22,8 @@ namespace MVCBasico.Controllers
         // GET: Turno
         public async Task<IActionResult> Index()
         {
+            ClientesDropDownList();
+            TurneraDropDownList();
             return View(await _context.Turnos.ToListAsync());
         }
 
@@ -40,6 +42,9 @@ namespace MVCBasico.Controllers
                 return NotFound();
             }
 
+            ClientesDropDownList(turno.IdCliente);
+            TurneraDropDownList(turno.IdTurnera);
+
             return View(turno);
         }
 
@@ -51,7 +56,7 @@ namespace MVCBasico.Controllers
         private void TurneraDropDownList(int? selectedTurnera = null)
         {
             var turnera = _context.Turneras;
-            ViewBag.IdTurnera = new SelectList(turnera.AsNoTracking(), "IdLibro", "Titulo", selectedTurnera);
+            ViewBag.IdTurnera = new SelectList(turnera.AsNoTracking(), "IdTurnera", "Nombre", selectedTurnera);
         }
 
 
@@ -126,8 +131,8 @@ namespace MVCBasico.Controllers
             {
                 return NotFound();
             }
-            ClientesDropDownList();
-            TurneraDropDownList();
+            ClientesDropDownList(turno.IdCliente);
+            TurneraDropDownList(turno.IdTurnera);
             return View(turno);
         }
 

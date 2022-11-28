@@ -14,31 +14,41 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdTurno" />
             <div class="form-group">
-                <label asp-for="IdCliente" class="control-label"></label>
-                <input asp-for="IdCliente" class="form-control" />
-                <span asp-validation-for="IdCliente" class="text-danger"></span>
+                <label asp-for="IdCliente" class="control-label">Cliente</label>
+                <select asp-for="IdCliente" asp-items="ViewBag.IdCliente">
+                    <option selected="selected" value="">
+                        Seleccione
+                    </option>
+                </select>
+                @*<input asp-for="IdCliente" class="form-control" />
+        <span asp-validation-for="IdCliente" class="text-danger"></span>*@
             </div>
             <div class="form-group">
-                <label asp-for="IdTurnera" class="control-label"></label>
-                <input asp-for="IdTurnera" class="form-control" />
-                <span asp-validation-for="IdTurnera" class="text-danger"></span>
+                <label asp-for="IdTurnera" class="control-label">Turnera</label>
+                <select asp-for="IdTurnera" asp-items="ViewBag.IdTurnera">
+                    <option selected="selected" value="">
+                        Seleccione
+                    </option>
+                </select>
+                @*<input asp-for="IdTurnera" class="form-control" />
+        <span asp-validation-for="IdTurnera" class="text-danger"></span>*@
             </div>
-            <div class="form-group">
-                <label asp-for="FechaTurno" class="control-label"></label>
-                <input asp-for="FechaTurno" class="form-control" />
-                <span asp-validation-for="FechaTurno" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="FechaTurno" class="control-label"></label>
+                        <input asp-for="FechaTurno" class="form-control" />
+                        <span asp-validation-for="FechaTurno" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div>
+            <a asp-action="Index">Volver a la lista</a>
+        </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

@@ -4,23 +4,31 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalle</h1>
 
 <div>
     <h4>Turno</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCliente)
+            Cliente
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCliente)
+        <dd class="col-sm-10">
+            <select asp-for="IdCliente" asp-items="ViewBag.IdCliente">
+                <option selected="selected" value="@Model.IdCliente">
+                    
+                </option>
+            </select>
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdTurnera)
+            Turnera
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdTurnera)
+        <dd class="col-sm-10">
+            <select asp-for="IdTurnera" asp-items="ViewBag.IdTurnera">
+                <option selected="selected" value="@Model.IdTurnera">
+                    
+                </option>
+            </select>
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FechaTurno)
@@ -31,6 +39,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdTurno">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.IdTurno">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
 </div>

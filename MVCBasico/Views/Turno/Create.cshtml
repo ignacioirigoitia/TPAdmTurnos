@@ -15,7 +15,7 @@
             <div class="form-group">
                 @*<label asp-for="IdCliente" class="control-label"></label>
                     <input asp-for="IdCliente" class="form-control" />*@
-                <label asp-for="IdCliente" class="control-label"></label>
+                <label asp-for="IdCliente" class="control-label">Cliente</label>
                 <select asp-for="IdCliente" asp-items="ViewBag.IdCliente">
                     <option selected="selected" value="">
                         Seleccione
@@ -25,9 +25,14 @@
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdTurnera" class="control-label"></label>
-                <input asp-for="IdTurnera" class="form-control" />
-                <span asp-validation-for="IdTurnera" class="text-danger"></span>
+                <label asp-for="IdTurnera" class="control-label">Turnera</label>
+                @*<input asp-for="IdTurnera" class="form-control" />
+        <span asp-validation-for="IdTurnera" class="text-danger"></span>*@
+                <select asp-for="IdTurnera" asp-items="ViewBag.IdTurnera">
+                    <option selected="selected" value="">
+                        Seleccione
+                    </option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="FechaTurno" class="control-label"></label>
